@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        title Movies
+        link(rel='stylesheet', href='/styles.css')
+    body
+        .container
+            h1 Movies List
+            nav
+                ul
+                    li: a(href='/') Home
+                    li: a(href='/movies') Movies
+                    li: a(href='/reviews') Reviews
+                    li: a(href='/users') UserProfile
+            h2 Trending Movies
+            ul.movies-container 
+                each movie in moviesProp  
+                    li
+                        img(src=movie.imageURL, alt=movie.title, width='200')
+                        h3= movie.title
+                        p Genre: #{movie.genre}
+                        p Release Date: #{movie.releaseDate}
+                        p Synopsis: #{movie.synopsis}

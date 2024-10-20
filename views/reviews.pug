@@ -1,0 +1,40 @@
+doctype html
+html
+    head
+        title Reviews
+        link(rel='stylesheet', href='/styles.css')
+    body
+        .container
+            h1 Movie Reviews
+            nav
+                ul
+                    li: a(href='/') Home
+                    li: a(href='/movies') Movies
+                    li: a(href='/reviews') Reviews
+                    li: a(href='/users') UserProfile
+            
+            h2 Submit Your Review
+            form(action='/reviews/submit-review', method='POST')
+                label(for='movie') Movie Title:
+                input(type='text', name='movie', id='movie', required, autocomplete='off')
+
+                label(for='userName') Your Name:
+                input(type='text', name='userName', id='userName', required, autocomplete='off') 
+
+                label(for='review') Review:
+                textarea(name='reviewText', id='review', required) 
+
+                label(for='rating') Rating (1-5):
+                input(type='number', name='rating', id='rating', min='1', max='5', required, autocomplete='off')
+
+                button(type='submit') Submit Review
+
+            h2 Community Reviews
+            ul(class='community-reviews')
+                each review in reviewsProp
+                    li
+                        h3 Movie: #{review.movieTitle}
+                        p User: #{review.userName}
+                        p Review: #{review.reviewText}
+                        p Rating: #{review.rating}
+                        p Date: #{review.dateCreated}

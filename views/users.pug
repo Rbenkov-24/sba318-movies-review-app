@@ -1,0 +1,33 @@
+doctype html
+html
+    head
+        title User Profiles
+        link(rel='stylesheet', href='/styles.css')
+    body
+        .container
+            h1 User Profiles
+            nav
+                ul
+                    li: a(href='/') Home
+                    li: a(href='/movies') Movies
+                    li: a(href='/reviews') Reviews
+                    li: a(href='/users') UserProfile
+            
+            h2 Create User Profile
+            form(action='/users/submit-user', method='POST')
+                label(for='username') Username:
+                input(type='text', name='username', id='username', required, autocomplete='off')
+                label(for='email') Email:
+                input(type='email', name='email', id='email', required, autocomplete='off')
+                label(for='password') Password:
+                input(type='password', name='password', id='password', required, autocomplete='off')
+                button(type='submit') Create User Profile
+
+            h2 Current Users
+            ul(class='user-list')
+                each user in usersProp
+                    li.user-img
+                        img(src=user.imageURL, alt=user.title, width='200')
+                        h3= user.username 
+                        p Email: #{user.email} 
+                        
